@@ -20,5 +20,9 @@ namespace Movies.API.Entities
         [Required]
         [MaxLength(200)]
         public string LastName { get; set; }
+
+        [Required]
+        [MaxLength(2)]
+        public double Score { get; set; }
     }
 }

@@ -64,7 +64,7 @@ namespace Movies.API
             // appSettings (note: use this during development; in a production environment,
             // it's better to store the connection string in an environment variable)
             var connectionString = Configuration["ConnectionStrings:MoviesDBConnectionString"];
-            services.AddDbContext<MoviesContext>(o => o.UseSqlite(connectionString));
+            services.AddDbContext<MoviesContext>(o => o.UseSqlServer(connectionString));
 
             services.AddScoped<IMoviesRepository, MoviesRepository>();
             services.AddScoped<IPostersRepository, PostersRepository>();

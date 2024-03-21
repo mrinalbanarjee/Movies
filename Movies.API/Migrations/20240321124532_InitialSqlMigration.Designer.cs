@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Movies.API.Contexts;
 
 namespace Movies.API.Migrations
 {
     [DbContext(typeof(MoviesContext))]
-    partial class MoviesContextModelSnapshot : ModelSnapshot
+    [Migration("20240321124532_InitialSqlMigration")]
+    partial class InitialSqlMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,10 +37,6 @@ namespace Movies.API.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<double>("Score")
-                        .HasMaxLength(2)
-                        .HasColumnType("float");
-
                     b.HasKey("Id");
 
                     b.ToTable("Directors");
@@ -48,43 +46,37 @@ namespace Movies.API.Migrations
                         {
                             Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             FirstName = "Quentin",
-                            LastName = "Tarantino",
-                            Score = 0.0
+                            LastName = "Tarantino"
                         },
                         new
                         {
                             Id = new Guid("da2fd609-d754-4feb-8acd-c4f9ff13ba96"),
                             FirstName = "Joel",
-                            LastName = "Coen",
-                            Score = 0.0
+                            LastName = "Coen"
                         },
                         new
                         {
                             Id = new Guid("c19099ed-94db-44ba-885b-0ad7205d5e40"),
                             FirstName = "Martin",
-                            LastName = "Scorsese",
-                            Score = 0.0
+                            LastName = "Scorsese"
                         },
                         new
                         {
                             Id = new Guid("0c4dc798-b38b-4a1c-905c-a9e76dbef17b"),
                             FirstName = "David",
-                            LastName = "Fincher",
-                            Score = 0.0
+                            LastName = "Fincher"
                         },
                         new
                         {
                             Id = new Guid("937b1ba1-7969-4324-9ab5-afb0e4d875e6"),
                             FirstName = "Bryan",
-                            LastName = "Singer",
-                            Score = 0.0
+                            LastName = "Singer"
                         },
                         new
                         {
                             Id = new Guid("7a2fbc72-bb33-49de-bd23-c78fceb367fc"),
                             FirstName = "James",
-                            LastName = "Cameron",
-                            Score = 0.0
+                            LastName = "Cameron"
                         });
                 });
 
