@@ -28,7 +28,8 @@ namespace Movies.API.Controllers
         public async Task<ActionResult<IEnumerable<Models.Movie>>> GetMovies()
         {
             var movieEntities = await _moviesRepository.GetMoviesAsync();
-            return Ok(_mapper.Map<IEnumerable<Models.Movie>>(movieEntities));
+            var movieModel = _mapper.Map<IEnumerable<Models.Movie>>(movieEntities);
+            return Ok(movieModel);
         }
 
         
@@ -106,7 +107,17 @@ namespace Movies.API.Controllers
             // repository) are used.
             _moviesRepository.UpdateMovie(movieEntity);
 
-            await _moviesRepository.SaveChangesAsync();
+           var anyChanges= await _moviesRepository.SaveChangesAsync();
+
+            if(anyChanges)
+            {
+                //do some operation
+            }
+
+            else
+            {
+
+            }
 
             // return the updated movie, after mapping it
             return Ok(_mapper.Map<Models.Movie>(movieEntity));

@@ -10,9 +10,9 @@ namespace Movies.API
     {
         public MoviesProfile()
         {
-            CreateMap<Entities.Movie, Models.Movie>()
-                .ForMember(dest => dest.Director, opt => opt.MapFrom(src =>
-                   $"{src.Director.FirstName} {src.Director.LastName}"));
+            CreateMap<Entities.Movie, Models.Movie>();
+                //.ForMember(dest => dest.Director, opt => opt.MapFrom(src =>
+                //   $"{src.Director.FirstName} {src.Director.LastName}"));
 
             CreateMap<Models.MovieForCreation, Entities.Movie>();
 

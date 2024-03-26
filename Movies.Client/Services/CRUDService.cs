@@ -17,9 +17,9 @@ namespace Movies.Client.Services
 
         public CRUDService()
         {
-            _httpClient.BaseAddress = new Uri("http://localhost:57863");
+            _httpClient.BaseAddress = new Uri("http://localhost:57863"); // URL of the REST API
             _httpClient.Timeout = new TimeSpan(0, 0, 30);
-            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Clear(); // test
             //_httpClient.DefaultRequestHeaders.Accept.Add(
             //    new MediaTypeWithQualityHeaderValue("application/json"));
             //_httpClient.DefaultRequestHeaders.Accept.Add(
@@ -28,22 +28,24 @@ namespace Movies.Client.Services
 
         public async Task Run()
         {
-            //await GetResource();
+           // await GetResource();
             //await GetResourceThroughHttpRequestMessage();
-            //await CreateResource();
+            await CreateResource();
             //await UpdateResource();
-            await DeleteResource();
+           // await DeleteResource();
         }
 
         public async Task GetResource()
         {
+            
             var response = await _httpClient.GetAsync("api/movies");
             response.EnsureSuccessStatusCode();
-
+     
             var movies = new List<Movie>();
             var content = await response.Content.ReadAsStringAsync();
             if (response.Content.Headers.ContentType.MediaType == "application/json")
             {
+                
                 movies = JsonSerializer.Deserialize<List<Movie>>(content,
                     new JsonSerializerOptions()
                     {
@@ -57,6 +59,14 @@ namespace Movies.Client.Services
             }
 
             // do something with the movies list
+
+            foreach(var movie in movies)
+            {
+                Console.WriteLine($"{movie.Title}");
+                Console.Write($"----------------------");
+            }
+
+            
         }
 
         public async Task GetResourceThroughHttpRequestMessage()
